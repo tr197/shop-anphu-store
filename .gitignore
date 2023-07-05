@@ -7,9 +7,7 @@ __pycache__
 db.sqlite3
 media
 
-book/migrations/*
-order/migrations/*
-member/migrations/*
+account/migrations/*
 
 staticfiles/
 
