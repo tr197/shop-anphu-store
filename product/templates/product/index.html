@@ -1,7 +1,8 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  {% include 'product/components/home/hero.html' %}
+  {% include 'product/components/home/categories.html' %}
+  {% include 'product/components/home/Incentives.html' %}
+  {% include 'base/footer.html' %}
 {% endblock content %}

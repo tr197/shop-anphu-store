@@ -5,5 +5,6 @@ app_name = 'product'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('dong-san-pham/', views.show_category, name='category'),
 ]
 
