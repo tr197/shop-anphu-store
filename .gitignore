@@ -18,3 +18,5 @@ staticfiles/
 env/ 
 venv/
 
+test/
+
