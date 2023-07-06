@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile 
 from django.db import models
 from app.constants import PHONE_NUMBER
-
+from django.urls import reverse
 
 class BaseProduct(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -104,6 +104,12 @@ class Category(BaseCategory):
         db_table = 'category'
 
 
+    def get_link_to(self):
+        return reverse(
+            'product:list-category',
+            kwargs={'slug': self.slug, 'category_id': self.id}
+            )
+
 
 class SubCategory(BaseCategory):
     parent_category = models.ForeignKey(Category, related_name='children',
@@ -115,6 +121,12 @@ class SubCategory(BaseCategory):
 
     def __str__(self) -> str:
         return f'{self.parent_category.name[:70]} > {self.name[:200]}'
+    
+    def get_link_to(self):
+        return reverse(
+            'product:list-products',
+            kwargs={'slug': self.parent_category.slug, 'sub_slug': self.slug, 'sub_category_id': self.id}
+            )
     
 
 class Product(BaseProduct):

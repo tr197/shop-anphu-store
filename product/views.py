@@ -31,7 +31,8 @@ def show_list_categories(request, slug, category_id):
         'all_categories': all_categories,
         'list_categories': list_category,
         'list_products': list_products,
-        'category': category
+        'category': category,
+        'curent_category_id': category.id,
     }
     return render(request, 'product/page_products.html', context)
 
@@ -50,7 +51,8 @@ def show_list_products(request, slug, sub_slug, sub_category_id):
         'all_categories': all_categories,
         'list_products': list_products,
         'category': sub_category.parent_category,
-        'sub_category': sub_category
+        'sub_category': sub_category,
+        'curent_category_id': sub_category.id,
     }
     return render(request, 'product/page_products.html', context)
 
