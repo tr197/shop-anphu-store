@@ -102,15 +102,31 @@
 
 
 <script>
+const rightMenu =  $('#rightMenu');
+
 
 const closeRightMenu = function() {
-  $('#rightMenu').removeClass('block')
-  $('#rightMenu').addClass('hidden')
+  rightMenu.removeClass('opacity-100');
+  rightMenu.addClass('opacity-0');
+
+  setTimeout(()=>{
+    rightMenu.removeClass('block');
+    rightMenu.addClass('hidden');
+  }, 500)
 };
 
-const openRightMenu = function() {
-  $('#rightMenu').removeClass('hidden')
-  $('#rightMenu').addClass('block')
+const openRightMenu = async function() {
+  await $('#rightMenu').removeClass('hidden').promise();
+  await $('#rightMenu').addClass('block').promise();
+
+  rightMenu.removeClass('opacity-0');
+  rightMenu.addClass('opacity-100');
 };
 
 </script>
+
+<style>
+  #rightMenu {
+    transition: opacity 0.5s ease-in-out;
+  }
+</style>
