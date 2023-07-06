@@ -1,7 +1,10 @@
 from django.contrib import admin
-from product.models import Category
+from product.models import Category, SubCategory, Product
 
-class CategoryAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     exclude = ('slug',)
 
-admin.site.register(Category, CategoryAdmin)
+
+admin.site.register(Category, ProductAdmin)
+admin.site.register(SubCategory, ProductAdmin)
+admin.site.register(Product, ProductAdmin)
