@@ -7,8 +7,9 @@ from PIL import Image
 from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile 
 from django.db import models
-from app.constants import CmpInfo, PathUploadImg
 from django.urls import reverse
+from app.constants import CmpInfo, PathUploadImg
+from product.services import delete_file_object
 
 
 class BaseImageModel(models.Model):
@@ -17,6 +18,10 @@ class BaseImageModel(models.Model):
 
     class Meta:
         abstract = True
+
+    def delete(self, *args, **kwargs):
+        delete_file_object(str(self.image))
+        super(BaseImageModel, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         if self.image:
