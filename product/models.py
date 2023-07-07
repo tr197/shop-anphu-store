@@ -133,9 +133,16 @@ class Product(BaseProduct):
     category = models.ForeignKey(BaseCategory, related_name='products',
                                  on_delete=models.CASCADE,
                                  null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
     
     class Meta:
         db_table = 'product'
+
+    def get_link_to(self):
+        return reverse(
+            'product:product-detail',
+            kwargs={'category_slug': self.category.slug, 'product_slug': self.slug, 'product_id': self.id}
+            )
 
 
 
