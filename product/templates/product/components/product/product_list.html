@@ -15,9 +15,9 @@
 
 {% if list_products %}
 
-<div class="bg-white">
+<div class="bg-white mb-8">
   <div class="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
-    <div class="bg-gray-100 py-2 px-3 mb-1 rounded-xs">
+    <div class="bg-gray-100 py-1.5 px-3 mb-1 rounded-xs border-b-2 border-cmedium mb-1">
       <h2 class="sm:text-lg text-gray-500 font-medium tracking-wider">Danh sách sản phẩm</h2>
     </div>
     
@@ -29,7 +29,7 @@
           <img src="{{ product.image.url }}" alt="TODO" class="h-full w-full object-cover object-center">
         </div>
         <div class=" pt-3 text-center">
-          <h3 class="text-sm font-medium text-gray-900">
+          <h3 class="text-sm font-medium text-cdark">
             <a href="{{ product.get_link_to }}">
               <span aria-hidden="true" class="absolute inset-0"></span>
               {{ product.name }}

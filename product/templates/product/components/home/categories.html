@@ -1,8 +1,9 @@
 <div class="bg-white">
   <div class="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <div class="sm:flex sm:items-baseline sm:justify-between">
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900">Dòng sản phẩm</h2>
-      <a href="{% url 'product:category' %}" class="pt-4 hidden text-md font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
+    <div class="sm:flex sm:items-baseline sm:justify-between border-b-2 pb-3 border-cmedium">
+      <h2 class="text-2xl font-bold tracking-tight text-cdark">Các dòng sản phẩm</h2>
+      <a href="{% url 'product:category' %}" 
+        class="pt-4 hidden text-md font-semibold text-indigo-600 hover:text-indigo-500 sm:block">
         Xem toàn bộ sản phẩm
         <span aria-hidden="true"> &rarr;</span>
       </a>
@@ -14,11 +15,22 @@
         <div aria-hidden="true" class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg lg:aspect-h-7 lg:aspect-w-6 group-hover:opacity-75">
           <img src="{{ category.image.url }}" alt="Brown leather key ring with brass metal loops and rivets on wood table." class="h-full w-full object-cover object-center">
         </div>
-        <h3 class="mt-4 text-center text-base font-semibold text-gray-900">{{ category.name }}</h3>
+        <h3 class="mt-4 text-center text-base font-semibold text-cdark">{{ category.name }}</h3>
         <!-- <p class="mt-2 text-sm text-gray-500">Keep your phone, keys, and wallet together, so you can lose everything at once.</p> -->
       </a>
       {% endfor %}
-
     </div>
+
+    <a class="sm:hidden" href="{% url 'product:category' %}" >
+      <div class="mt-8 text-center bg-indigo-600 hover:bg-indigo-500 py-2 rounded"> 
+        <span href="{% url 'product:category' %}" 
+          class="text-center text-md font-semibold text-gray-100  ">
+          Xem toàn bộ sản phẩm
+          <span aria-hidden="true"> &rarr;</span>
+        </span>
+      </div>
+    </a>
+
+
   </div>
 </div>
