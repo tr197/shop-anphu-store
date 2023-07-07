@@ -7,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>phu kien an phu</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
   {% load static %}
+  <script src="{% static 'templates/scripts/jquery.min.js' %}"></script>
+  <script src="{% static 'templates/scripts/tailwindcss.min.js' %}"></script>
+  <script src="{% static 'templates/scripts/tailwind.plugins.min.js' %}"></script>
   <script src="{% static 'templates/scripts/tailwind.config.js' %}"></script>
+  
 </head>
 <body class="h-full">
     {% block content %}
