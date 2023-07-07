@@ -1,6 +1,8 @@
 from pathlib import Path
 import environ
 import  os
+from .constants import AWSS3Info
+
 
 env = environ.Env()
 environ.Env.read_env()
@@ -95,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 
@@ -114,5 +116,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if bool(int(env('MEDIA_S3'))):
+    AWS_ACCESS_KEY_ID = AWSS3Info.AWS_ACCESS_KEY_ID.value
+    AWS_SECRET_ACCESS_KEY = AWSS3Info.AWS_SECRET_ACCESS_KEY.value
+    AWS_STORAGE_BUCKET_NAME = AWSS3Info.AWS_STORAGE_BUCKET_NAME.value
+    AWS_S3_REGION_NAME = AWSS3Info.AWS_S3_REGION_NAME.value
+    AWS_S3_CUSTOM_DOMAIN = AWSS3Info.AWS_S3_CUSTOM_DOMAIN.value
+    DEFAULT_FILE_STORAGE = AWSS3Info.DEFAULT_FILE_STORAGE.value
+    # DEFAULT_FILE_STORAGE = MediaStorage
+else:
+    MEDIA_URL = 'media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

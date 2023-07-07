@@ -7,7 +7,7 @@ from PIL import Image
 from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile 
 from django.db import models
-from app.constants import CmpInfo
+from app.constants import CmpInfo, PathUploadImg
 from django.urls import reverse
 
 
@@ -95,7 +95,7 @@ class BaseProduct(BaseImageModel):
 
 
 class BaseCategory(BaseProduct):
-    image = models.ImageField(upload_to='images/product/category')
+    image = models.ImageField(upload_to=PathUploadImg.CATEGORY)
     
     class Meta:
         db_table = 'base_category'
@@ -144,7 +144,7 @@ class Product(BaseProduct):
                                  on_delete=models.CASCADE,
                                  null=False, blank=False)
     description = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='images/product/main')
+    image = models.ImageField(upload_to=PathUploadImg.PRODUCT_MAIN)
     
     class Meta:
         db_table = 'product'
@@ -158,4 +158,4 @@ class Product(BaseProduct):
 
 class ProductImages(BaseImageModel):
     product = models.ForeignKey(Product, related_name='other_images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/product/other')
+    image = models.ImageField(upload_to=PathUploadImg.PRODUCT_OTHER)

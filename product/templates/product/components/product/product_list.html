@@ -26,7 +26,7 @@
       {% for product in list_products %}
       <div class="group relative border-b border-r border-gray-200 p-3 p-5 sm:p-4">
         <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75 shadow">
-          <img src="{{ product.image.url }}" alt="TODO" class="h-full w-full object-cover object-center">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full w-full object-cover object-center">
         </div>
         <div class=" pt-3 text-center">
           <h3 class="text-sm font-medium text-cdark">
