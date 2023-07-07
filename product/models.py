@@ -7,7 +7,7 @@ from PIL import Image
 from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile 
 from django.db import models
-from app.constants import PHONE_NUMBER
+from app.constants import CmpInfo
 from django.urls import reverse
 
 class BaseProduct(models.Model):
@@ -64,7 +64,7 @@ class BaseProduct(models.Model):
         image_cv = np.array(image_cv)
 
         # Nội dung chữ
-        text_content = PHONE_NUMBER
+        text_content = CmpInfo.PHONE_NUMBER
         font_scale = int(image_cv.shape[0] // 250)
         thickness = int(image_cv.shape[0] // 400)
         text_color = (255, 255, 255)

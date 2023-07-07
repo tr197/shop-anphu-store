@@ -1,9 +1,13 @@
 import contextlib
 from django.shortcuts import render, get_object_or_404
 from product.models import Category, SubCategory, Product
+from app.constants import CmpInfo
 
 def index(request):
-    return render(request, 'product/index.html')
+    context = {
+        'CmpInfo': CmpInfo,
+    }
+    return render(request, 'product/index.html', context)
 
 
 def show_all_categories(request):
@@ -12,6 +16,7 @@ def show_all_categories(request):
     context = {
         'all_categories': all_categories,
         'list_categories': all_categories,
+        'CmpInfo': CmpInfo,
     }
     return render(request, 'product/page_products.html', context)
 
@@ -33,6 +38,7 @@ def show_list_categories(request, slug, category_id):
         'list_products': list_products,
         'category': category,
         'curent_category_id': category.id,
+        'CmpInfo': CmpInfo,
     }
     return render(request, 'product/page_products.html', context)
 
@@ -53,6 +59,7 @@ def show_list_products(request, slug, sub_slug, sub_category_id):
         'category': sub_category.parent_category,
         'sub_category': sub_category,
         'curent_category_id': sub_category.id,
+        'CmpInfo': CmpInfo,
     }
     return render(request, 'product/page_products.html', context)
 
@@ -77,6 +84,7 @@ def show_product_detail(request, category_slug, product_slug, product_id):
         'sub_category': sub_category,
         'product': product,
         'curent_category_id': curent_category_id,
+        'CmpInfo': CmpInfo,
     }
 
     return render(request, 'product/product_detail.html', context)
