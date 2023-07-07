@@ -7,7 +7,10 @@
         <!-- Image selector -->
         <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
           <div class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
-            <button id="tabs-2-tab-1" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4" aria-controls="tabs-2-panel-1" role="tab" type="button">
+
+            <button class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+              aria-controls="tabs-2-panel-1" role="tab" type="button"
+              onclick="choseImg('{{product.id}}')">
               <span class="sr-only">Angled view</span>
               <span class="absolute inset-0 overflow-hidden rounded-md shadow border">
                 <img src="{{ product.image.url }}" alt="" 
@@ -17,36 +20,19 @@
               <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
             </button>
 
-            <button id="tabs-2-tab-1" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4" aria-controls="tabs-2-panel-1" role="tab" type="button">
+            {% for prd_img in other_images %}
+            <button class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+              aria-controls="tabs-2-panel-1" role="tab" type="button"
+              onclick="choseImg('{{prd_img.id}}')">
               <span class="sr-only">Angled view</span>
               <span class="absolute inset-0 overflow-hidden rounded-md shadow border">
-                <img src="{{ product.image.url }}" alt="" 
+                <img src="{{ prd_img.image.url }}" alt="" 
                   class="h-full w-full object-cover object-center">
               </span>
               <!-- Selected: "ring-indigo-500", Not Selected: "ring-transparent" -->
               <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
             </button>
-
-            <button id="tabs-2-tab-1" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4" aria-controls="tabs-2-panel-1" role="tab" type="button">
-              <span class="sr-only">Angled view</span>
-              <span class="absolute inset-0 overflow-hidden rounded-md shadow border">
-                <img src="{{ product.image.url }}" alt="" 
-                  class="h-full w-full object-cover object-center">
-              </span>
-              <!-- Selected: "ring-indigo-500", Not Selected: "ring-transparent" -->
-              <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
-            </button>
-
-            <button id="tabs-2-tab-1" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4" aria-controls="tabs-2-panel-1" role="tab" type="button">
-              <span class="sr-only">Angled view</span>
-              <span class="absolute inset-0 overflow-hidden rounded-md shadow border">
-                <img src="{{ product.image.url }}" alt="" 
-                  class="h-full w-full object-cover object-center">
-              </span>
-              <!-- Selected: "ring-indigo-500", Not Selected: "ring-transparent" -->
-              <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
-            </button>
-            
+            {% endfor %}
 
             <!-- More images... -->
           </div>
@@ -55,8 +41,15 @@
         <div class="aspect-h-1 aspect-w-1 w-full">
           <!-- Tab panel, show/hide based on tab state. -->
           <div id="tabs-2-panel-1" aria-labelledby="tabs-2-tab-1" role="tabpanel" tabindex="0">
-            <img src="{{ product.image.url }}" alt="Angled front view with bag zipped and handles upright."
-              class="h-full w-full object-cover object-center sm:rounded-lg shadow-lg border">
+            <img src="{{ product.image.url }}" alt="{{product.name}}"
+              id="lg-{{product.id}}"
+              class="lg-prd-img block h-full w-full object-cover object-center sm:rounded-lg shadow-lg border">
+
+            {% for prd_img in other_images %}
+            <img src="{{ prd_img.image.url }}" alt="{{product.name}}"
+              id="lg-{{prd_img.id}}"
+              class="lg-prd-img hidden h-full w-full object-cover object-center sm:rounded-lg shadow-lg border">
+            {% endfor %}
           </div>
 
           <!-- More images... -->
@@ -138,3 +131,16 @@
     </section> -->
   </div>
 </main>
+
+
+<script>
+
+const choseImg = function(id) {
+  $('.lg-prd-img').removeClass('block');
+  $('.lg-prd-img').addClass('hidden');
+
+  $(`#lg-${id}`).removeClass('hidden');
+  $(`#lg-${id}`).addClass('block');
+}
+
+</script>

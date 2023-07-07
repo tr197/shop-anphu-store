@@ -4,8 +4,10 @@ from product.models import Category, SubCategory, Product
 from app.constants import CmpInfo
 
 def index(request):
+    top_categories = Category.objects.all()[:3]
     context = {
         'CmpInfo': CmpInfo,
+        'top_categories': top_categories,
     }
     return render(request, 'product/index.html', context)
 
@@ -83,6 +85,7 @@ def show_product_detail(request, category_slug, product_slug, product_id):
         'category': category,
         'sub_category': sub_category,
         'product': product,
+        'other_images': product.other_images.all(),
         'curent_category_id': curent_category_id,
         'CmpInfo': CmpInfo,
     }

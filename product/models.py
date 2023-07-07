@@ -10,25 +10,15 @@ from django.db import models
 from app.constants import CmpInfo
 from django.urls import reverse
 
-class BaseProduct(models.Model):
+
+class BaseImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=200, null=False, blank=False)
-    slug = models.SlugField(max_length=200, unique=True, null=False, blank=True)
-    image = models.ImageField(upload_to="product/images")
-    create_date = models.DateField(auto_now_add=True)
-    update_date = models.DateField(auto_now=True)
-    
+    image = models.ImageField(upload_to="images")
+
     class Meta:
         abstract = True
-        db_table = 'base_product'
-
-    def __str__(self) -> str:
-        return self.name[:200]
-
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-
         if self.image:
             processed_image_array = self.__processing_image()
 
@@ -56,6 +46,7 @@ class BaseProduct(models.Model):
                 None,
             )
         super().save(*args, **kwargs)
+
 
     def __processing_image(self):
         """Chèn chữ vào ảnh trước khi lưu"""
@@ -85,8 +76,27 @@ class BaseProduct(models.Model):
         return image_cv
 
 
-class BaseCategory(BaseProduct):
+class BaseProduct(BaseImageModel):
+    name = models.CharField(max_length=200, null=False, blank=False)
+    slug = models.SlugField(max_length=200, unique=True, null=False, blank=True)
+    create_date = models.DateField(auto_now_add=True)
+    update_date = models.DateField(auto_now=True)
+    
+    class Meta:
+        abstract = True
 
+    def __str__(self) -> str:
+        return self.name[:200]
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+
+class BaseCategory(BaseProduct):
+    image = models.ImageField(upload_to='images/product/category')
+    
     class Meta:
         db_table = 'base_category'
 
@@ -134,6 +144,7 @@ class Product(BaseProduct):
                                  on_delete=models.CASCADE,
                                  null=False, blank=False)
     description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/product/main')
     
     class Meta:
         db_table = 'product'
@@ -145,4 +156,6 @@ class Product(BaseProduct):
             )
 
 
-
+class ProductImages(BaseImageModel):
+    product = models.ForeignKey(Product, related_name='other_images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/product/other')
