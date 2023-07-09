@@ -120,3 +120,8 @@ sudo supervisorctl status project
 python manage.py collectstatic
 sudo cp -r /home/ubuntu/project/staticfiles /var/www/static
 ```
+
+## cú pháp backup
+```
+scp -i keyname.pem ubuntu@ec2_ip:path/to/file.sql ./bk
+```
