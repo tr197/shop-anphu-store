@@ -4,10 +4,12 @@ from product.models import Category, SubCategory, Product
 from app.constants import CmpInfo
 
 def index(request):
-    top_categories = Category.objects.all()[:3]
+    top_categories = Category.objects.all()
+    top_products = Product.objects.all()
     context = {
         'CmpInfo': CmpInfo,
         'top_categories': top_categories,
+        'top_products': top_products,
     }
     return render(request, 'product/index.html', context)
 

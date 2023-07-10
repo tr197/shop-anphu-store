@@ -11,7 +11,7 @@ from django.urls import reverse
 from app.constants import CmpInfo, PathUploadImg
 from product.services import delete_file_object
 
-TEXT_COLOR = (99, 102, 241)
+TEXT_COLOR = (240, 240, 240)
 
 class BaseImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
