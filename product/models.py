@@ -11,6 +11,7 @@ from django.urls import reverse
 from app.constants import CmpInfo, PathUploadImg
 from product.services import delete_file_object
 
+TEXT_COLOR = (99, 102, 241)
 
 class BaseImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -60,21 +61,30 @@ class BaseImageModel(models.Model):
         image_cv = np.array(image_cv)
 
         # Nội dung chữ
-        text_content = CmpInfo.PHONE_NUMBER
-        font_scale = int(image_cv.shape[0] // 250)
+        text_content_1 = CmpInfo.DOMAIN_NAME
+        text_content_2 = CmpInfo.PHONE_NUMBER
+
+        font_scale = int(image_cv.shape[0] // 400)
         thickness = int(image_cv.shape[0] // 400)
-        text_color = (255, 255, 255)
-        font = cv2.FONT_HERSHEY_DUPLEX
+        text_color = TEXT_COLOR
+        font = cv2.FONT_HERSHEY_SIMPLEX  
 
         # Xác định kích thước của chữ
-        (text_width, text_height), _ = cv2.getTextSize(text_content, font, font_scale, thickness=thickness)
+        (text_width, text_height), _ = cv2.getTextSize(text_content_1, font, font_scale, thickness=thickness)
+        (text_width_2, text_height_2), _ = cv2.getTextSize(text_content_2, font, font_scale, thickness=thickness)
 
         # Tính toán vị trí chữ để chèn vào trung tâm hình ảnh
         image_height, image_width, _ = image_cv.shape
         text_x = (image_width - text_width) // 2
         text_y = (image_height + text_height) // 2
+        
 
-        cv2.putText(image_cv, text_content, (text_x, text_y), 
+        cv2.putText(image_cv, text_content_1, (text_x, text_y - int(text_height*0.8)), 
+                    font, font_scale, text_color, 
+                    thickness=thickness, lineType=cv2.LINE_AA)
+        
+        text_x_2 = (image_width - text_width_2) // 2
+        cv2.putText(image_cv, text_content_2, (text_x_2, text_y + int(text_height*0.7)), 
                     font, font_scale, text_color, 
                     thickness=thickness, lineType=cv2.LINE_AA)
 
