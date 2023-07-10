@@ -1,61 +1,47 @@
-<div class="mx-auto pb-16 sm:pb-24 lg:max-w-7xl lg:px-8">
-<div class="bg-white relative">
-
+<div class="bg-white">
   <header class="absolute inset-x-0 top-0 z-50">
-    <div class="bg-cdark rounded-sm">
-      <div class="mx-auto flex h-12 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <!-- Currency selector -->
-        <h1 class="text-sm font-medium text-white hover:text-gray-100 pr-4">
-          {{ CmpInfo.NAME }}
-        </h1>
-  
-
-        <div class=" flex justify-center text-sm font-medium text-white">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
-              class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-          </div>       
-          <a href="tel:{{ CmpInfo.PHONE_NUMBER }}" class="pl-2 items-center  hover:text-gray-100">{{ CmpInfo.PHONE_NUMBER }}</a>
-        </div>
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 pt-3 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          {% load static %}
+          <span class="sr-only">phukienanphu.com</span>
+          <img class="h-14 w-auto" src="{% static 'templates/assets/images/phukienanphu-logo.png' %}" alt="">
+        </a>
       </div>
-    </div>
-    <div class="mx-auto max-w-7xl">
-      <div class="px-6 pt-2 lg:max-w-2xl lg:pl-8 lg:pr-0">
-        <nav class="flex items-center justify-between lg:justify-start" aria-label="Global">
-          <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            {% load static %}
-            <img alt="Your Company" class="h-14 w-auto" src="{% static 'templates/assets/images/phukienanphu-logo.png' %}">
-          </a>
-          <button onclick="openRightMenu()"
-            type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 lg:hidden">
-            <span class="sr-only">Open main menu</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-          <div class="hidden lg:ml-12 lg:flex lg:gap-x-14">
-            <a href="{% url 'product:category' %}" class="text-sm font-semibold leading-6 text-gray-900">Sản phẩm</a>
-            <a href="#the-footer" class="text-sm font-semibold leading-6 text-gray-900">Thông tin liên hệ</a>
-
-          </div>
-        </nav>
+      <div class="flex lg:hidden">
+        <button type="button" onclick="openRightMenu()" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
       </div>
-    </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="{% url 'product:category' %}" class="text-sm font-semibold leading-6 text-cdark">
+          Xem sản phẩm
+        </a>
+        <a href="#the-footer" class="text-sm font-semibold leading-6 text-cdark">Thông tin liên hệ</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+          class="mt-0.5 w-5 h-5 text-cdark">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+        </svg>
+        <a href="tel:{{ CmpInfo.PHONE_NUMBER }}" class="pl-2 items-center text-cdark hover:text-gray-700">{{ CmpInfo.PHONE_NUMBER }}</a>
+        
+      </div>
+    </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
-    <div  id="rightMenu"  class="hidden" role="dialog" aria-modal="true">
+    <div id="rightMenu" class="hidden" role="dialog" aria-modal="true">
       <!-- Background backdrop, show/hide based on slide-over state. -->
       <div class="fixed inset-0 z-50"></div>
-
       <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
+            <span class="sr-only">phukienanphu.com</span>
             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
           </a>
-          <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" 
-            onclick="closeRightMenu()">
+          <button type="button" onclick="closeRightMenu()" class="-m-2.5 rounded-md p-2.5 text-gray-700">
             <span class="sr-only">Close menu</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -65,52 +51,95 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <a href="{% url 'product:category' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Sản phẩm</a>
-              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+              <a href="{% url 'product:category' %}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Xem sản phẩm
+              </a>
+              <a href="#the-footer" onclick="closeRightMenu()"
+                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Thông tin liên hệ
+              </a>
             </div>
-            <div class="py-6">
-              <!-- <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a> -->
+            <div class="py-6 flex">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                class="mt-0.5 w-5 h-5 text-cdark">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+              <a href="tel:{{ CmpInfo.PHONE_NUMBER }}" class="pl-2 items-center text-cdark hover:text-gray-700">{{ CmpInfo.PHONE_NUMBER }}</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </header>
-
-  <div class="relative sm:pt-12">
-    <div class="mx-auto max-w-7xl">
-      <div class="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
-        <svg class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 transform fill-white lg:block" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <polygon points="0,0 90,0 50,100 0,100" />
+  <main>
+    <div class="relative isolate">
+      <svg class="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]" aria-hidden="true">
+        <defs>
+          <pattern id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84" width="200" height="200" x="50%" y="-1" patternUnits="userSpaceOnUse">
+            <path d="M.5 200V.5H200" fill="none" />
+          </pattern>
+        </defs>
+        <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+          <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" stroke-width="0" />
         </svg>
-
-        <div class="relative px-6 py-32 sm:py-40 lg:px-8 lg:py-56 lg:pr-0">
-          <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-            <!-- <div class="hidden sm:mb-10 sm:flex">
-              <h1>hello</h1>
-            </div> -->
-            <h1 class="text-4xl font-bold tracking-tight text-cdark sm:text-6xl">
-              Nhà cung cấp phụ kiện ngành nước
-            </h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">
-              {{ CmpInfo.LONG_DESCRIPTION }}
-            </p>
-            <div class="mt-10 flex items-center gap-x-6">
-              <a href="{% url 'product:category' %}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Xem sản phẩm
-              </a>
-              <a href="#the-footer" class="text-sm font-semibold leading-6 text-gray-900">Thông tin liên hệ <span aria-hidden="true">→</span></a>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)" />
+      </svg>
+      <div class="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48" aria-hidden="true">
+        <div class="aspect-[801/1036] w-[50.0625rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(63.1% 29.5%, 100% 17.1%, 76.6% 3%, 48.4% 0%, 44.6% 4.7%, 54.5% 25.3%, 59.8% 49%, 55.2% 57.8%, 44.4% 57.2%, 27.8% 47.9%, 35.1% 81.5%, 0% 97.7%, 39.2% 100%, 35.2% 81.4%, 97.2% 52.8%, 63.1% 29.5%)"></div>
+      </div>
+      <div class="overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
+          <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
+            <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
+              <div class="gradient">
+                <h1 class="text-md sm:text-xl font-bold tracking-tight pb-4">{{ CmpInfo.NAME }}</h1>
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight decoration-neutral-950">{{ CmpInfo.SHORT_INTRO }}</h1>
+                <!-- <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt mollit id pariatur in voluptate cillum.</p> -->
+              </div>
+              <div class="mt-10 flex items-center gap-x-6">
+                <a href="{% url 'product:category' %}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  Xem sản phẩm
+                </a>
+                <a href="#the-footer" class="text-sm font-semibold leading-6 text-gray-900">
+                  Thông tin liên hệ<span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+            <div class="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+              <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
+              <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
+              <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+                <div class="relative">
+                  <img src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80" alt="" class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg">
+                  <div class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-      <img class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full" src="{% static 'templates/assets/images/home/big-bg.jpg' %}" alt="">
-    </div>
-  </div>
+  </main>
 </div>
-</div>
+
 
 
 <script>
@@ -118,6 +147,7 @@ const rightMenu =  $('#rightMenu');
 
 
 const closeRightMenu = function() {
+  console.log('close')
   rightMenu.removeClass('opacity-100');
   rightMenu.addClass('opacity-0');
 
@@ -128,6 +158,7 @@ const closeRightMenu = function() {
 };
 
 const openRightMenu = async function() {
+  console.log('open');
   await $('#rightMenu').removeClass('hidden').promise();
   await $('#rightMenu').addClass('block').promise();
 
@@ -138,7 +169,16 @@ const openRightMenu = async function() {
 </script>
 
 <style>
-  #rightMenu {
-    transition: opacity 0.5s ease-in-out;
-  }
+#rightMenu {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.gradient {
+  background-image: linear-gradient(to right, #211E61, #4F46E5);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 </style>
