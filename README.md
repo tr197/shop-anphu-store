@@ -13,7 +13,7 @@ sudo apt install nginx -y
 sudo apt install mariadb-server -y
 
 sudo mariadb
-CREATE USER 'sieunhan'@'%' IDENTIFIED BY 'A5kstnie9db';
+CREATE USER 'sieunhan'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON *.* TO 'sieunhan'@'%' WITH GRANT OPTION;
 
 CREATE DATABASE ongnuoc;
